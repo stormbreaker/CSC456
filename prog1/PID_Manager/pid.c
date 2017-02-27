@@ -14,9 +14,15 @@ int allocate_map(void)
 {
 	if (pthread_mutex_init(&mutex, NULL) != 0)
     {
-        printf("\n mutex init failed\n");
-        return 1;
+        printf("\nmutex init failed\n");
+        return -1;
     }
+	int i;
+	for (i = 0; i <= PID_MAX; i++)
+	{
+		pid_map[i] = 0;
+	}
+
    return 0; //return last;
 }
 
@@ -38,7 +44,9 @@ int allocate_pid(void)
 	{
 		//printf("%d\n", i);
 		i++;
-	} while (pid_map[i] == 1);
+	} while ((pid_map[i] == 1) && i < PID_MAX + 1);
+	
+
 	pid_map[i] = 1;
 	allocatedPID = i;
 
@@ -46,6 +54,10 @@ int allocate_pid(void)
 	if (pthread_mutex_unlock(&mutex) != 0)
 	{
 		printf("unable to release lock\n");
+	}
+	if (i == PID_MAX + 1)
+	{
+		return -1;
 	}
 
    return allocatedPID; // return last;
@@ -61,6 +73,11 @@ void release_pid(int pid)
 		return;
 	}
 
+	if (pid_map[pid] == 0)
+	{
+		printf("PID was not already in use\n");
+	}
+	pid_map[pid] = 0;
 
    /* release and warn if the mutex was not released  */
 	if (pthread_mutex_unlock(&mutex) != 0)
@@ -69,7 +86,7 @@ void release_pid(int pid)
 		return;
 	}
 
-	pid_map[pid]  = 0;
+
 	printf("released %d\n", pid);
 
 }

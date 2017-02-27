@@ -18,16 +18,25 @@
 #define NUM_OF_SEATS           3
 
 /* semaphores and mutex lock */
+pthread_mutex_t mutex_lock;
 
 /* semaphore declarations */
+sem_t sleeping;
+sem_t officechair;
+sem_t freetogo;
 
 /* the number of waiting students */
+int students_waiting;
 
 /* student being served */
+int serving_student;
 
 /* the numeric id of each student */
+int student_id[NUM_OF_STUDENTS];
 
 /* student function prototype */
+void *student_loop(void *param);
 
 /* ta function prototype */
+void *ta_loop(void *param);
 

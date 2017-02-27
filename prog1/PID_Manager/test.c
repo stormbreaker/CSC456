@@ -25,33 +25,36 @@ pthread_mutex_t test_mutex;
 
 void *allocator(void *param)
 {
-   int i, pid;
+   int i, pid, tid;
+	tid = pthread_self();
+	//printf("%d\n",tid);
 
    for (i = 0; i < ITERATIONS; i++) {
       /* sleep for a random period of time */
 		sleep((int)(random() % SLEEP));
 
 
+		pid = allocate_pid();
+
       /* allocate a pid */
-			pid = allocate_pid();
-
-      if (pid == -1)
-			{
-         printf("No pid available\n");
-			}      
-			else {
-         /* indicate in the in_use map the pid is in use */ //WHYYYY????
-					pthread_mutex_lock(&test_mutex);
-					in_use[pid] = 1;
-					pthread_mutex_unlock(&test_mutex);
-					printf("allocated %d\n", pid);	
-
-         /* sleep for a random period of time */
-				sleep((int)(random() % SLEEP));
+		if (pid == -1)
+		{
+			printf("No pid available\n");
+		}
+		else
+		{
+   	    	 /* indicate in the in_use map the pid is in use */
+			pthread_mutex_lock(&test_mutex);
+			in_use[pid] = 1;
+			pthread_mutex_unlock(&test_mutex);
+			printf("allocated %d\n", pid);	
+	
+        	 /* sleep for a random period of time */
+			sleep((int)(random() % SLEEP));
          
-         /* release the pid */
-				release_pid(pid);
-      }
+        	 /* release the pid */
+			release_pid(pid);
+		}
    }
 }
 
@@ -60,10 +63,10 @@ int main(void)
    int i;
    pthread_t tids[NUM_THREADS];
 
-		if (pthread_mutex_init(&test_mutex, NULL) != 0)
+	if (pthread_mutex_init(&test_mutex, NULL) != 0)
     {
         printf("\n mutex init failed\n");
-        return 1;
+        return -1;
     }
 
 		//initialize these to put them to 0 to indicate not in use
@@ -73,10 +76,10 @@ int main(void)
 
 
    /* allocate the pid map */
-   if (allocate_map() == 1)
-		{
+   if (allocate_map() == -1)
+	{
       return -1;
-		}
+	}
 
    srandom((unsigned)time(NULL));
 
@@ -93,7 +96,7 @@ int main(void)
 	}
    /* test is finished */
     pthread_mutex_destroy(&test_mutex);
-		cleanup();
+	cleanup();
 
    return 0;
 }
