@@ -16,31 +16,36 @@ void init()
 {
 	int i;
 	students_waiting = 0;
+	//create the main lock
    if (pthread_mutex_init(&mutex_lock, NULL) != 0) 
 	{
       printf("%s\n",strerror(errno));
 	}
 
+	// sleeping mutex
    if (sem_init(&sleeping, 0, 0) == -1)
 	{
       printf("error init students_sem\n"); 
 	}
 	
+	// is the student being helped free to leave
    if (sem_init(&freetogo, 0, 0) == -1)
 	{
       printf("error init ta\n");
 	}
 
+	// is the ta ready to see you
 	if (sem_init(&officechair, 0, 0) == -1)
 	{
 		printf("error initializing office chair");
 	}
 
+	//initialize the student ids to their proper ones.
 	for (i = 0; i < NUM_OF_STUDENTS; i++) {
 		student_id[i] = i;
 	}
 }
-
+// create the student threads
 void create_students()
 {
 	int i;
@@ -49,15 +54,17 @@ void create_students()
    }
 }
 
+// create the ta thread
 void create_ta()
 {
 	pthread_create(&ta, NULL, &ta_loop, NULL);
 }
 
+//main function
 int main(void)
 {
 int i;
-
+	//initialize functions
    init();
    create_ta();
    create_students();

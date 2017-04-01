@@ -18,6 +18,7 @@ void *student_loop(void *param)
 
    srandom((unsigned)time(NULL));
 
+	// loop through many times the student tries to get help
    while (times_through_loop < 5) {
 
 	sleep_time = (int)((random() % MAX_SLEEP_TIME)+1);
@@ -35,20 +36,19 @@ void *student_loop(void *param)
 		students_waiting++;
          printf("\t\tStudent %d takes a seat waiting = %d\n", param, students_waiting);
 
-		//unlock
-
-        if (sem_post(&sleeping) != 0){ //wake TA (post)
+		//tells the TA to wake his butt up		
+        if (sem_post(&sleeping) != 0){ 
              printf("StudentC %s\n",strerror(errno));
 		}
 
 	     pthread_mutex_unlock(&mutex_lock);
-
+		// waits for the TA to get the room ready
          if (sem_wait(&officechair) != 0) {
              printf("StudentB %s\n",strerror(errno));
 		}
 
          printf("Student %d receiving help\n", param);
-
+		// waits until the TA tells the student he can leave.  
 		if (sem_wait(&freetogo) !=0) {
 			printf("something in freetogo broke");
 		}

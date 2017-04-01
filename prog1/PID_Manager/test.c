@@ -2,7 +2,7 @@
  * test.c
  *
  * Test the implementation of the PID manager.
- *
+ *	Template code by Dr. Karlsson.  Implemented by Benjamin Kaiser
  */
 
 #include <pthread.h>
@@ -23,20 +23,21 @@ int in_use[PID_MAX + 1]; //0 or 1 flag indicating usage although not 100% why ne
  */
 pthread_mutex_t test_mutex;
 
+// the function that each thread should run upon creation
 void *allocator(void *param)
 {
-   int i, pid, tid;
-	tid = pthread_self();
-	//printf("%d\n",tid);
+	// creation of the loop variable as well as the process id for this thread.
+	int i, pid;
 
-   for (i = 0; i < ITERATIONS; i++) {
+	// each thread has a number of times that it requests a PID and then sleeps.
+	for (i = 0; i < ITERATIONS; i++) {
       /* sleep for a random period of time */
 		sleep((int)(random() % SLEEP));
 
-
-		pid = allocate_pid();
-
+		
       /* allocate a pid */
+		pid = allocate_pid();
+		// if allocate_pid returns -1 we have an error
 		if (pid == -1)
 		{
 			printf("No pid available\n");
@@ -58,6 +59,7 @@ void *allocator(void *param)
    }
 }
 
+// main function
 int main(void)
 {
    int i;
