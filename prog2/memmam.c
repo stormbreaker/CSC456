@@ -32,4 +32,6 @@ int main(int argc, char *argv[])
 	offset = calc_offset(address);
 
 	printf("The address %u contains\npage number = %u\noffset = %d\n", address, page_num, offset);
+
+	return 0;
 }
