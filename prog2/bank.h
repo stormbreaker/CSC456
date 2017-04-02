@@ -1,6 +1,12 @@
+#include <pthread.h>
+
 /* these may be any values >= 0*/
 #define NUMBER_OF_CUSTOMERS 5
 #define NUMBER_OF_RESOURCES 3
+
+pthread_mutex_t mutex;
+
+int customerids[NUMBER_OF_CUSTOMERS];
 
 /* the available amount of each resource */
 int available[NUMBER_OF_RESOURCES];

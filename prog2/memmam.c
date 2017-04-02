@@ -27,11 +27,11 @@ int main(int argc, char *argv[])
 		return 1;
     }
 
-	address = strtoull(argv[1], NULL, 0);
+	address = strtoul(argv[1], NULL, 0);
 	page_num = calculate_page_number(address);
 	offset = calc_offset(address);
 
-	printf("The address %u contains\npage number = %u\noffset = %d\n", address, page_num, offset);
+	printf("The address %lu contains\npage number = %u\noffset = %u\n", address, page_num, offset);
 
 	return 0;
 }
