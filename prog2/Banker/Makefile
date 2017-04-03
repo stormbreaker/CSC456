@@ -14,10 +14,10 @@ $(TARGET): $(OBJS)
 	$(CC) -pthread -o $(TARGET) $(OBJS)
 
 bank.o: bank.c bank.h
-	$(CC) -lpthread -c bank.c
+	$(CC) -pthread -c bank.c
 
 customer.o: customer.c customer.h
-	$(CC) -lpthread -c customer.c
+	$(CC) -pthread -c customer.c
 
 clean:
 	$(RM) *.gch *.o *~ $(TARGET)
