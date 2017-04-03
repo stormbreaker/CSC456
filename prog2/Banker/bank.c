@@ -21,6 +21,8 @@ void init_arrays()
 {
 	int i = 0;
 	int j = 0;
+	
+	// for each customer initialize all the arrays of all the resources
 	for (j = 0; j < NUMBER_OF_CUSTOMERS; j++)
 	{
 		for (i = 0; i < NUMBER_OF_RESOURCES; i++)
@@ -32,33 +34,43 @@ void init_arrays()
 	}
 }
 
+/*
+	Author: Benjamin Kaiser
+	Description:  This function is the main function for the program.  It creates an array of threads
+	that will be "each" customer.  It also converts the command line arguments that were passed in
+	into the numbers.  The arrays are then initialized for the banker's data structures.  
+*/
 int main(int argc, char* argv[])
 {
 
  	pthread_t threads[NUMBER_OF_CUSTOMERS];
 	int i = 0;
 
+	// verify command line arguments
 	if (argc != NUMBER_OF_RESOURCES + 1)
 	{
-		/* We print argv[0] assuming it is the program name */
         printf( "usage: %s <resource counts>\n", argv[0] );
 		return 1;
 	}
-
+	
+	// convert command line arguments
 	for (i = 1; i < argc; i++)
 	{
 		available[i-1] = atoi(argv[i]);
 	}
 
+	// initialize arrays
 	init_arrays();
    
+	// create the threads
 	for (i = 0; i < NUMBER_OF_CUSTOMERS; i++)
 	{
 		customerids[i] = i;
     	pthread_create (&threads[i], NULL, &customer_function, &customerids[i]);
 	}
 
-   for (i = 0; i < NUMBER_OF_CUSTOMERS; i++) {
+	// join all the threads together
+	for (i = 0; i < NUMBER_OF_CUSTOMERS; i++) {
 	   pthread_join(threads[i],NULL);
 	}
 
