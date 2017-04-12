@@ -1,16 +1,20 @@
+#ifndef BTK_DISK_SCHED
+#define BTK_DISK_SCHED
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <pthread.h>
 
-const int NUMREQUESTS = 1000;
+#define NUMREQUESTS 1000
 
-int requests[NUMREQUESTS];
+int requests[NUMREQUESTS] = {0};
 const int CYLINDERS = 5000;
 
-int fcfcs();
 int sstf();
 int scan();
 int cscan();
 int look();
 int clook();
 void generateRequests(); 
+
+#endif

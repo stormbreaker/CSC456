@@ -16,8 +16,8 @@ all: $(TARGET)
 $(TARGET): $(OBJS)
 	$(CC) -o $(TARGET) $(OBJS)
 
-disk_sched.o: disk_sched.c disk_sched.h fcfs.c sstf.c scan.c cscan.c look.c clook.c
-	$(CC) $(CFLAGS) disk_sched.c disk_sched.h fcfs.c sstf.c scan.c cscan.c look.c clook.c
+disk_sched.o: disk_sched.c disk_sched.h fcfs.c fcfs.h sstf.c scan.c cscan.c look.c clook.c
+	$(CC) $(CFLAGS) fcfs.c fcfs.h disk_sched.c disk_sched.h sstf.c scan.c cscan.c look.c clook.c
 
 clean:
-	$(RM) *.o *~ $(TARGET)
+	$(RM) *.o *.h.gch *~ $(TARGET)
