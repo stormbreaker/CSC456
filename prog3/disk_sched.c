@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <pthread.h>
 #include <time.h>
+#include "disk_sched.h"
 
 void generateRequests()
 {
