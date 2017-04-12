@@ -1,2 +1,3 @@
 *.o
 disk_sched
+*.h.gch
