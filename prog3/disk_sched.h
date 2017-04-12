@@ -2,7 +2,9 @@
 #include <stdio.h>
 #include <pthread.h>
 
-int requests[1000];
+const int NUMREQUESTS = 1000;
+
+int requests[NUMREQUESTS];
 const int CYLINDERS = 5000;
 
 int fcfcs();

@@ -10,7 +10,7 @@ void generateRequests()
 
     srand(time(NULL));
 
-    for (i = 0; i < 1000; i++)
+    for (i = 0; i < NUMREQUESTS; i++)
     {
         requests[i] = rand() % CYLINDERS;
     }

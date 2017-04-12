@@ -5,7 +5,7 @@ int fcfs()
 {
     int totalDistance = 0;
 
-
+     
 
     return totalDistance;
 }
