@@ -2,32 +2,8 @@
 #include <stdio.h>
 #include <pthread.h>
 
-void fcfs()
-{
 
-}
-
-void sstf()
-{
-
-}
-
-void scan()
-{
-
-}
-
-void cscan()
-{
-
-}
-
-void look()
-{
-
-}
-
-void clook()
+void generateRequests()
 {
 
 }
