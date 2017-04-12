@@ -4,6 +4,9 @@
 #include <time.h>
 #include "disk_sched.h"
 #include "fcfs.h"
+#include "sstf.h"
+
+int CYLINDERS = 5000;
 
 void generateRequests()
 {
@@ -33,6 +36,8 @@ int main(int argc, char** argv)
     generateRequests();
 
     distance = fcfs(startHead);
+
+    printf("%d\n", distance);
 
     return 0;
 }

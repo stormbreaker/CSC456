@@ -7,10 +7,9 @@
 
 #define NUMREQUESTS 1000
 
-int requests[NUMREQUESTS] = {0};
-const int CYLINDERS = 5000;
+int requests[NUMREQUESTS];
+int CYLINDERS;
 
-int sstf();
 int scan();
 int cscan();
 int look();

@@ -1,6 +1,5 @@
-#include "disk_sched.h"
 #include "fcfs.h"
-
+#include "disk_sched.h"
 
 int fcfs(int headStartPosition)
 {
