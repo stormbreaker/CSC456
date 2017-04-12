@@ -5,7 +5,14 @@
 
 void generateRequests()
 {
-    srand(
+    int i = 0;
+
+    srand(time(NULL));
+
+    for (i = 0; i < 1000; i++)
+    {
+        requests[i] = rand() % CYLINDERS;
+    }
 }
 
 int main(int argc, char** argv)
