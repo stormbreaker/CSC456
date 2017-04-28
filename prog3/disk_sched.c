@@ -40,7 +40,7 @@ int main(int argc, char** argv)
     if (startHead < 0 || startHead > CYLINDERS)
     {
         printf("Invalid Starting Head please enter a value between %d and %d\n", 0, CYLINDERS);
-        return 1;
+        return -1;
     }
 
     generateRequests();
