@@ -10,10 +10,6 @@
 int requests[NUMREQUESTS];
 int CYLINDERS;
 
-int scan();
-int cscan();
-int look();
-int clook();
-void generateRequests(); 
+void generateRequests();
 
 #endif

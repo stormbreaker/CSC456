@@ -5,6 +5,10 @@
 #include "disk_sched.h"
 #include "fcfs.h"
 #include "sstf.h"
+#include "scan.h"
+#include "cscan.h"
+#include "look.h"
+#include "clook.h"
 
 int CYLINDERS = 5000;
 
@@ -37,11 +41,27 @@ int main(int argc, char** argv)
 
     distance = fcfs(startHead);
 
-    printf("%d\n", distance);
+    printf("FCFS: %d\n", distance);
 
     distance = sstf(startHead);
 
-    printf("%d\n", distance);
+    printf("SSTF: %d\n", distance);
+
+    distance = scan(startHead);
+
+    printf("SCAN: %d\n", distance);
+
+    distance = cscan(startHead);
+
+    printf("CSCAN: %d\n", distance);
+
+    distance = look(startHead);
+
+    printf("LOOK: %d\n", distance);
+
+    distance = clook(startHead);
+
+    printf("CLOOK: %d\n", distance);
 
     return 0;
 }
