@@ -39,5 +39,9 @@ int main(int argc, char** argv)
 
     printf("%d\n", distance);
 
+    distance = sstf(startHead);
+
+    printf("%d\n", distance);
+
     return 0;
 }

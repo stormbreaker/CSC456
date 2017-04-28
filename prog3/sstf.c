@@ -8,7 +8,8 @@ int sstf(int startHeadPosition)
     int j = 0;
 
     int totalDistance = 0;
-
+    int doneCount = 0;
+    int currentPosition = startHeadPosition;
     int minimumDistance = CYLINDERS;
     int minimumIndex = 0;
 
@@ -19,26 +20,21 @@ int sstf(int startHeadPosition)
         done[i] = false;
     }
 
-    for (i = 0; i < NUMREQUESTS; i++)
+    while (doneCount < NUMREQUESTS)
     {
-        if (abs(startHeadPosition - requests[i]) < minimumDistance)
+        for (i = 0; i < NUMREQUESTS; i++)
         {
-            minimumDistance = abs(startHeadPosition - requests[i]);
-            minimumIndex = i;
+            if (abs(currentPosition - requests[i]) < minimumDistance && !done[i])
+            {
+                minimumDistance = abs(currentPosition - requests[i]);
+                minimumIndex = i;
+            }
         }
-    }
-
-    done[minimumIndex] = true;
-
-    for (i = 0; i < NUMREQUESTS; i++)
-    {
-        for (j = 0; j < NUMREQUESTS; j++)
-        {
-             if (abs(requests[i] - requests[j]) && done[j] == false)
-             {
-                 minimumDistance = abs(
-             }
-        }
+        done[minimumIndex] = true;
+        totalDistance += minimumDistance;
+        currentPosition = requests[minimumIndex];
+        minimumDistance = CYLINDERS;
+        doneCount++;
     }
 
     return totalDistance;

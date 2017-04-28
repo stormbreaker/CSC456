@@ -6,7 +6,7 @@ CPP = g++
 CFLAGS = -c #-g -Wall
 
 #OBJECT FILES
-OBJS = disk_sched.o fcfs.o
+OBJS = disk_sched.o fcfs.o sstf.o
 
 #TARGET FILES
 TARGET = disk_sched
