@@ -37,6 +37,12 @@ int main(int argc, char** argv)
 
     startHead = atoi(argv[1]);
 
+    if (startHead < 0 || startHead > CYLINDERS)
+    {
+        printf("Invalid Starting Head please enter a value between %d and %d\n", 0, CYLINDERS);
+        return 1;
+    }
+
     generateRequests();
 
     distance = fcfs(startHead);

@@ -35,11 +35,11 @@ int look(int startHeadPosition)
 
     while (doneCount < NUMREQUESTS)
     {
-        if (currentPosition == min)
+        if (currentPosition < min)
         {
             directionMovement = 1;
         }
-        else if (currentPosition == max)
+        else if (currentPosition > max)
         {
             directionMovement = -1;
         }
@@ -55,6 +55,6 @@ int look(int startHeadPosition)
         currentPosition += directionMovement;
         totalDistance += 1;
     }
-    
+
     return totalDistance;
 }
