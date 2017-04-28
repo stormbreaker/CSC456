@@ -45,10 +45,10 @@ int clook(int startHeadPosition)
         }
         currentPosition += 1;
         totalDistance += 1;
-        if (currentPosition > max)
+        if (currentPosition > max || currentPosition > CYLINDERS)
         {
             totalDistance += CYLINDERS - currentPosition;
-            currentPosition = 0;
+            currentPosition = min;
         }
 
     }
