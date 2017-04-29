@@ -8,19 +8,20 @@
 #include <stdbool.h>
 
 /*
-	Author: Benjamin Kaiser
-	Description:  
+    Author: Benjamin Kaiser
+    Description:  This function implements the circular scan
+    scheduling algorithm.  It takes a head starting position for an
+    input.  After that it moves one position to the right and scans up to the
+    end of the disk.  When it hits this it goes over the end of the disk
+    and continues until all requests have been processed.
 */
 int cscan(int startHeadPosition)
 {
     int i = 0;
-    int j = 0;
 
     int totalDistance = 0;
     int doneCount = 0;
     int currentPosition = startHeadPosition;
-    int minimumDistance = CYLINDERS;
-    int minimumIndex = 0;
 
     bool done[NUMREQUESTS];
 

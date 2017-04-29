@@ -11,21 +11,17 @@
     Description:  This function implements the circular look
     scheduling algorithm.  It takes a head starting position for an
     input.  After that it moves one position to the right and processes
-    requests along the way.  If it hits the max request or the edge of the cylinder,
-    it goes up (or down) to the minimum value and begins going up again
+    requests along the way.  If it hits the max request it resets and then
+    things beginning count again going upwards and looking for requests.
 */
 int clook(int startHeadPosition)
 {
     int i = 0;
-    int j = 0;
+
 
     int totalDistance = 0;
     int doneCount = 0;
     int currentPosition = startHeadPosition;
-    int minimumDistance = CYLINDERS;
-    int minimumIndex = 0;
-
-    int directionMovement = -1;
 
     bool done[NUMREQUESTS];
 

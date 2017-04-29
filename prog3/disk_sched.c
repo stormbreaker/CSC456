@@ -11,7 +11,6 @@
 
 #include <stdlib.h>
 #include <stdio.h>
-#include <pthread.h>
 #include <time.h>
 #include "disk_sched.h"
 #include "fcfs.h"
@@ -74,9 +73,9 @@ int main(int argc, char** argv)
     startHead = atoi(argv[1]);
 
 	// error check proper input
-    if (startHead < 0 || startHead > CYLINDERS)
+    if (startHead < 0 || startHead > CYLINDERS - 1)
     {
-        printf("Invalid Starting Head please enter a value between %d and %d\n", 0, CYLINDERS);
+        printf("Invalid Starting Head please enter a value between %d and %d\n", 0, CYLINDERS - 1);
         return -1;
     }
 

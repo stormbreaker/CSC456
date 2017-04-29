@@ -15,10 +15,10 @@
 	proceeds from there.  It initializes
 	the array which indicates if something is
 	done or not.  At the same time, it finds the min
-	and max of the requests and sets those.  
+	and max of the requests and sets those.
 	After that it processes the requests as it moves
 	up and down and looks to see if there are any requests
-	at the current position.  
+	at the current position.
 */
 int look(int startHeadPosition)
 {
@@ -28,8 +28,6 @@ int look(int startHeadPosition)
     int totalDistance = 0;
     int doneCount = 0;
     int currentPosition = startHeadPosition;
-    int minimumDistance = CYLINDERS;
-    int minimumIndex = 0;
 
     int directionMovement = -1;
 
