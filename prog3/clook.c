@@ -1,7 +1,15 @@
+/*
+	Author: Benjamin Kaiser
+	Description:  This file contains the actual definition of
+	the circular look algorithm.
+*/
 #include "clook.h"
 #include "disk_sched.h"
 #include <stdbool.h>
-
+/*
+	Author: Benjamin Kaiser
+	Description:  
+*/
 int clook(int startHeadPosition)
 {
     int i = 0;

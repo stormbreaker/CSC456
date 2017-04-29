@@ -1,7 +1,16 @@
+/*
+	Author: Benjamin Kaiser
+	Description:  This file contains the actual definition of
+	the scan algorithm.
+*/
 #include "scan.h"
 #include "disk_sched.h"
 #include <stdbool.h>
 
+/*
+	Author: Benjamin Kaiser
+	Description:  
+*/
 int scan(int startHeadPosition)
 {
     int i = 0;
