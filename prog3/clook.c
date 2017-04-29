@@ -7,8 +7,12 @@
 #include "disk_sched.h"
 #include <stdbool.h>
 /*
-	Author: Benjamin Kaiser
-	Description:  
+    Author: Benjamin Kaiser
+    Description:  This function implements the circular look
+    scheduling algorithm.  It takes a head starting position for an
+    input.  After that it moves one position to the right and processes
+    requests along the way.  If it hits the max request or the edge of the cylinder,
+    it goes up (or down) to the minimum value and begins going up again
 */
 int clook(int startHeadPosition)
 {
@@ -28,6 +32,7 @@ int clook(int startHeadPosition)
     int min = CYLINDERS;
     int max = 0;
 
+    // initialize done and find min and max
     for (i = 0; i < NUMREQUESTS; i++)
     {
         done[i] = false;
@@ -41,10 +46,13 @@ int clook(int startHeadPosition)
         }
     }
 
+    // process requests
     while (doneCount < NUMREQUESTS)
     {
+        // look for requests at this position
         for (i = 0; i < NUMREQUESTS; i++)
         {
+            // found a request
             if (requests[i] == currentPosition && done[i] == false)
             {
                 done[i] = true;
@@ -53,9 +61,22 @@ int clook(int startHeadPosition)
         }
         currentPosition += 1;
         totalDistance += 1;
+        // we hit the one end and need to go back
+        // assume this is a reset and not actually part of the seek count
         if (currentPosition > max || currentPosition > CYLINDERS)
         {
-            totalDistance += CYLINDERS - currentPosition;
+            // uncomment this code to count the reset as part of seek time
+            /*
+            int tempDist = max - min;
+            if (max - min > (CYLINDERS - currentPosition + min))
+            {
+                totalDistance += (CYLINDERS - currentPosition + min);
+            }
+            else
+            {
+                totalDistance += max - min;
+            }
+            */
             currentPosition = min;
         }
 

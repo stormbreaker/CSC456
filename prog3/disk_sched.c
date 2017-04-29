@@ -6,7 +6,7 @@
 	Description:  This file contains all of the implementation for
 	the main part of the disk scheduling program.  This includes
 	the function which generates the requests to access the disk head
-	and the main function.  
+	and the main function.
 */
 
 #include <stdlib.h>
@@ -30,7 +30,7 @@ int CYLINDERS = 5000;
 	for access on the disk.  It does this by looping through as many
 	times as assigned to the NUMREQUESTS macro and each time generates a number
 	between 0 and the number of CYLINDERS there are (base program has 5000 cylinders)
-	This random value is then assigned to the requests array.  
+	This random value is then assigned to the requests array.
 */
 void generateRequests()
 {
@@ -54,7 +54,7 @@ void generateRequests()
 	then a usage statement is printed and the program exits.
 	If the input is invalid, then an error is printed and
 	the program returns.  After this, if everything is
-	OK, then each algorithm is called that has been 
+	OK, then each algorithm is called that has been
 	implemented in it's own function.  The value from these
 	functions are set to the distance variable and this is then
 	printed out along with the algorithm that created that number.
